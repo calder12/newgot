@@ -9,20 +9,29 @@
 </script>
 
 <script>
+  import { slide } from 'svelte/transition';
+
   export let posts;
   let displayPosts = posts;
+  let showFilters = false
   let troopClasses = ["Infantry", "Cavalry", "Bowmen", "Spearmen"];
   let troopType = [
     "Area Attack",
     "Area Attack (Line)",
     "Attack & Defense",
+    "Attack & CC",
     "Defense & Disable",
     "Defense & CC",
+    "Defensive",
     "Single Target Attack",
     "Support",
     "Support & Healing"
   ];
   let acquisition = ["free", "pay"];
+
+  const toggleFilters = () => {
+    showFilters = !showFilters
+  }
 
   const showAllClasses = () => {
     troopClasses = ["Infantry", "Cavalry", "Bowmen", "Spearmen"];
@@ -35,14 +44,16 @@
   };
   const showAllTypes = () => {
     troopType = [
-      "Area Attack",
-      "Area Attack (Line)",
-      "Attack & Defense",
-      "Defense & Disable",
-      "Defense & CC",
-      "Single Target Attack",
-      "Support",
-      "Support & Healing"
+    "Area Attack",
+    "Area Attack (Line)",
+    "Attack & Defense",
+    "Attack & CC",
+    "Defense & Disable",
+    "Defense & CC",
+    "Defensive",
+    "Single Target Attack",
+    "Support",
+    "Support & Healing"
     ];
     filterCommanders();
   };
@@ -111,6 +122,11 @@
   .button-group {
     margin-top: 1rem;
   }
+  .toggle {
+    cursor: pointer;
+    font-size: 1rem;
+    color: rgb(255,62,0);
+  }
 </style>
 
 <svelte:head>
@@ -118,8 +134,9 @@
 </svelte:head>
 
 <h1>Commanders</h1>
-<h2>Filters</h2>
-<div class="filters">
+<h2>Filters <span class="toggle" on:click={toggleFilters}>{#if showFilters}Hide{:else}Show{/if}</span></h2>
+{#if showFilters}
+<div class="filters" transition:slide>
   <div class="filter-group">
     <div>
       <h3>Troop Type</h3>
@@ -288,6 +305,7 @@
     </div>
   </div>
 </div>
+{/if}
 <div class="commanders">
   {#each displayPosts as post}
     <a rel="prefetch" href="commanders/{post.slug}" class="commander-link">

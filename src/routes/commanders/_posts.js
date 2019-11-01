@@ -143,7 +143,7 @@ const posts = [
 			title: "Kravas",
 			slug: "kravas",
 			acquisition: "free",
-			type: "Attack & Disable",
+			type: "Attack & CC",
 			class: "Bowmen",
 			economicBonus: "Fortification construction",
 			militaryBonus: "Fortification defense & Bowmen attack",
