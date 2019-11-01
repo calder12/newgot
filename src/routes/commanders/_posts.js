@@ -5,9 +5,9 @@ const posts = [
 			acquisition: "pay",
 			type: "Defensive",
 			class: "Infantry",
-			economicBonus: "None",
-			militaryBonus: "Infantry Attack, Health and Defense",
-			html: ""
+			economicBonus: ["None"],
+			militaryBonus: ["Infantry Attack", "Infantry Health", "Infantry Defense"],
+			html: ``
 		},
 		{
 			title: "Arslan",
@@ -15,9 +15,9 @@ const posts = [
 			acquisition: "free",
 			type: "Single Target Attack",
 			class: "Spearmen",
-			economicBonus: "Wood Production",
-			militaryBonus: "Spearmen Health & Attack",
-			html: ""
+			economicBonus: ["Wood Production"],
+			militaryBonus: ["Spearmen Health", "Spearmen Attack"],
+			html: ``
 		},
 		{
 			title: "Arya Stark",
@@ -27,7 +27,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: "Wood production",
 			militaryBonus: "Total Attack & Infantry Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Barrett",
@@ -37,7 +37,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: "Stone Production",
 			militaryBonus: "Infantry Health & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Cersei Lannister",
@@ -47,7 +47,7 @@ const posts = [
 			class: "Bowmen",
 			economicBonus: "None",
 			militaryBonus: "Total Attack, Health & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Chris",
@@ -57,7 +57,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: "Construction Speed",
 			militaryBonus: "Infantry Attack & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Daenerys Targaryen",
@@ -67,7 +67,7 @@ const posts = [
 			class: "Spearmen",
 			economicBonus: "None",
 			militaryBonus: "Total Attack, Health & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Feis",
@@ -77,7 +77,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: "Gold Production",
 			militaryBonus: "Infantry Attack & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Gorrell",
@@ -87,7 +87,7 @@ const posts = [
 			class: "Spearmen",
 			economicBonus: "Iron production",
 			militaryBonus: "Spearmen Attack & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Haley",
@@ -97,7 +97,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: "Increase Motivation limit",
 			militaryBonus: "Wall Defense & Infantry Attack",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Jaime Lannister",
@@ -107,7 +107,7 @@ const posts = [
 			class: "Spearmen",
 			economicBonus: "None",
 			militaryBonus: "Total Attack, Spearmen Health and Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Jeane",
@@ -117,7 +117,7 @@ const posts = [
 			class: "Cavalry",
 			economicBonus: "Construction Speed & Grain Production",
 			militaryBonus: "Cavalry Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Jon Snow",
@@ -127,7 +127,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: "None",
 			militaryBonus: "Total Defense, Attack & Health",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Kevin",
@@ -137,7 +137,7 @@ const posts = [
 			class: "Cavalry",
 			economicBonus: "Training speed",
 			militaryBonus: "Total Health & Total Attack",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Kravas",
@@ -147,7 +147,7 @@ const posts = [
 			class: "Bowmen",
 			economicBonus: "Fortification construction",
 			militaryBonus: "Fortification defense & Bowmen attack",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Laena Waters",
@@ -157,7 +157,7 @@ const posts = [
 			class: "Cavalry",
 			economicBonus: "None",
 			militaryBonus: "Cavalry Attack, Health & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Leila Mormont",
@@ -167,7 +167,7 @@ const posts = [
 			class: "Cavalry",
 			economicBonus: "None",
 			militaryBonus: "Cavalry Attack, Health & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Margaery Tyrell",
@@ -177,7 +177,7 @@ const posts = [
 			class: "Spearmen",
 			economicBonus: "Research Speed",
 			militaryBonus: "Total Attack & Health",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Melisandre",
@@ -187,7 +187,7 @@ const posts = [
 			class: "Bowmen",
 			economicBonus: "None",
 			militaryBonus: "Bowmen Attack & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Mengo",
@@ -195,9 +195,9 @@ const posts = [
 			acquisition: "free",
 			type: "Attack & Defense",
 			class: "Cavalry",
-			economicBonus: "",
+			economicBonus: ``,
 			militaryBonus: "Wall Defense, Cavalry Attack & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Meranda",
@@ -207,7 +207,7 @@ const posts = [
 			class: "Spearmen",
 			economicBonus: "None",
 			militaryBonus: "Spearmen Attack, Health and Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Merrell Peake",
@@ -217,7 +217,7 @@ const posts = [
 			class: "Cavalry",
 			economicBonus: "Iron production",
 			militaryBonus: "Cavalry Health & Attack",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Petyr Baelish",
@@ -227,7 +227,7 @@ const posts = [
 			class: "Cavalry",
 			economicBonus: "None",
 			militaryBonus: "Total Attack, Health & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Raymond",
@@ -237,7 +237,7 @@ const posts = [
 			class: "Cavalry",
 			economicBonus: "Research Speed, Training Speed & Gold Production",
 			militaryBonus: "None",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Robb Stark",
@@ -247,7 +247,7 @@ const posts = [
 			class: "Cavalry",
 			economicBonus: "Gold Production",
 			militaryBonus: "Cavalry defense & health",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Robert",
@@ -257,7 +257,7 @@ const posts = [
 			class: "Bowmen",
 			economicBonus: "Iron Production",
 			militaryBonus: "Fortification Durability & Bowmen Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Russell",
@@ -267,7 +267,7 @@ const posts = [
 			class: "Cavalry",
 			economicBonus: "Stone Production, Construction Speed",
 			militaryBonus: "Cavalry Attack",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Sabrina",
@@ -276,8 +276,8 @@ const posts = [
 			type: "Single Target Attack",
 			class: "Bowmen",
 			economicBonus: "Construction, Research & Training Speed",
-			militaryBonus: "",
-			html: ""
+			militaryBonus: "None",
+			html: ``
 		},
 		{
 			title: "Sandor Clegane",
@@ -287,7 +287,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: "Training Speed",
 			militaryBonus: "Total Attack & Health",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Sansa",
@@ -297,7 +297,7 @@ const posts = [
 			class: "Bowmen",
 			economicBonus: "Fortification Durability",
 			militaryBonus: "Bowmen Attack & Health",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Seg",
@@ -307,7 +307,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: "Training Speed",
 			militaryBonus: "Total Attack & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Sheila",
@@ -317,7 +317,7 @@ const posts = [
 			class: "Bowmen",
 			economicBonus: "Grain production",
 			militaryBonus: "Bowmen Attack & Fortifications Attack",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Simon Blackmyre",
@@ -327,7 +327,7 @@ const posts = [
 			class: "Bowmen",
 			economicBonus: "Research Speed",
 			militaryBonus: "Total Attack & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Sinara",
@@ -337,7 +337,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: "None",
 			militaryBonus: "Total Attack, Infantry Health & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Soren",
@@ -347,7 +347,7 @@ const posts = [
 			class: "Bowmen",
 			economicBonus: "Research Speed, Gold production & Fortification Construction",
 			militaryBonus: "None",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Theon Greyjoy",
@@ -357,7 +357,7 @@ const posts = [
 			class: "Bowmen",
 			economicBonus: "None",
 			militaryBonus: "Total Attack, Bowmen Health & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Tyrion Lannister",
@@ -367,7 +367,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: "Research Speed",
 			militaryBonus: "Total Attack & Defense",
-			html: ""
+			html: ``
 		},
 		{
 			title: "Varys",
@@ -377,7 +377,7 @@ const posts = [
 			class: "Spearmen",
 			economicBonus: "Research speed",
 			militaryBonus: "Spearmen Attack & Fortifications Defense",
-			html: ""
+			html: ``
 		}
 ];
 
