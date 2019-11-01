@@ -11,30 +11,62 @@
 <script>
   export let posts;
   let displayPosts = posts;
-  let troopClasses = [
-    "Infantry",
-    "Cavalry",
-    "Bowmen",
-    "Spearmen"
+  let troopClasses = ["Infantry", "Cavalry", "Bowmen", "Spearmen"];
+  let troopType = [
+    "Area Attack",
+    "Area Attack (Line)",
+    "Attack & Defense",
+    "Defense & Disable",
+    "Defense & CC",
+    "Single Target Attack",
+    "Support",
+    "Support & Healing"
   ];
-  let acquisition = ["free", "pay"]
+  let acquisition = ["free", "pay"];
+
+  const showAll = () => {
+    troopClasses = ["Infantry", "Cavalry", "Bowmen", "Spearmen"];
+    troopType = [
+      "Area Attack",
+      "Area Attack (Line)",
+      "Attack & Defense",
+      "Defense & Disable",
+      "Defense & CC",
+      "Single Target Attack",
+      "Support",
+      "Support & Healing"
+    ];
+    acquisition = ["free", "pay"];
+    filterCommanders();
+  };
+
+  const clearAll = () => {
+    troopType = [];
+    troopClasses = [];
+    acquisition = [];
+    filterCommanders();
+  };
 
   function filterCommanders() {
-    displayPosts = posts.filter(post => troopClasses.includes(post.class))
-    displayPosts = displayPosts.filter(post => acquisition.includes(post.acquisition))
+    displayPosts = posts.filter(post => troopClasses.includes(post.class));
+    displayPosts = displayPosts.filter(post =>
+      acquisition.includes(post.acquisition)
+    );
+    displayPosts = displayPosts.filter(post => troopType.includes(post.type));
   }
 </script>
 
 <style>
   .filters {
-    display: flex;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+    grid-gap: 1rem;
     margin-bottom: 1.5rem;
   }
 
   .commanders {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
     grid-gap: 1rem;
   }
   .commander {
@@ -111,6 +143,89 @@
     </label>
   </div>
   <div class="filter-group">
+    <h3>Type</h3>
+    <label for="areaattack">
+      <input
+        name="areaattack"
+        id="areaattack"
+        type="checkbox"
+        bind:group={troopType}
+        on:change={filterCommanders}
+        value="Area Attack" />
+      Area Attack
+    </label>
+    <label for="areaattackline">
+      <input
+        name="areaattackline"
+        id="areaattackline"
+        type="checkbox"
+        bind:group={troopType}
+        on:change={filterCommanders}
+        value="Area Attack (Line)" />
+      Area Attack (Line)
+    </label>
+    <label for="attackdefense">
+      <input
+        name="attackdefense"
+        id="attackdefense"
+        type="checkbox"
+        bind:group={troopType}
+        on:change={filterCommanders}
+        value="Attack & Defense" />
+      Attack &amp; Defense
+    </label>
+    <label for="defensedisable">
+      <input
+        name="defensedisable"
+        id="defensedisable"
+        type="checkbox"
+        bind:group={troopType}
+        on:change={filterCommanders}
+        value="Defense & Disable" />
+      Defense &amp; Disable
+    </label>
+    <label for="defensecc">
+      <input
+        name="defensecc"
+        id="defensecc"
+        type="checkbox"
+        bind:group={troopType}
+        on:change={filterCommanders}
+        value="Defense & CC" />
+      Defense &amp; CC
+    </label>
+    <label for="singletarget">
+      <input
+        name="singletarget"
+        id="singletarget"
+        type="checkbox"
+        bind:group={troopType}
+        on:change={filterCommanders}
+        value="Single Target Attack" />
+      Single Target Attack
+    </label>
+    <label for="support">
+      <input
+        name="support"
+        id="support"
+        type="checkbox"
+        bind:group={troopType}
+        on:change={filterCommanders}
+        value="Support" />
+      Support
+    </label>
+    <label for="supporthealing">
+      <input
+        name="supporthealing"
+        id="supporthealing"
+        type="checkbox"
+        bind:group={troopType}
+        on:change={filterCommanders}
+        value="Support & Healing" />
+      Support &amp; Healing
+    </label>
+  </div>
+  <div class="filter-group">
     <h3>Acquisition</h3>
     <label for="free">
       <input
@@ -132,6 +247,11 @@
         value="pay" />
       Pay to Win
     </label>
+  </div>
+  <div class="filter-group">
+    <h3>Resets</h3>
+    <button on:click={showAll}>Show all</button>
+    <button on:click={clearAll}>Clear all</button>
   </div>
 </div>
 <div class="commanders">
