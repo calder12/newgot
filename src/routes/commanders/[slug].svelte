@@ -15,6 +15,7 @@
 
 <script>
 	export let post;
+	console.log(post)
 </script>
 
 <style>
@@ -58,7 +59,20 @@
 </svelte:head>
 
 <h1>{post.title}</h1>
-
+<div>
+<p>
+Economic Bonus: 
+{#each post.economicBonus as bonus}
+{bonus}
+{/each}
+</p>
+<p>
+Military Bonus: 
+{#each post.militaryBonus as bonus}
+{bonus} 
+{/each}
+</p>
+</div>
 <div class='content'>
 	{@html post.html}
 </div>

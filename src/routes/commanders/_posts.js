@@ -7,7 +7,7 @@ const posts = [
 			class: "Infantry",
 			economicBonus: ["None"],
 			militaryBonus: ["Infantry Attack", "Infantry Health", "Infantry Defense"],
-			html: ``
+			html: `<p>This is Andrea, isn't she cool?</p>`
 		},
 		{
 			title: "Arslan",
