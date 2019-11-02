@@ -12,28 +12,34 @@
   export let researches;
   let researchBonus;
   let researchHelps;
-  let selectedResearch
-  let displayResearches = []
+  let selectedResearch;
+  let displayResearches = [];
+  let currentResearches = [];
+  let researchTime;
 
   const getResearches = () => {
-    displayResearches = researches.filter( research => selectedResearch.includes(research.tree) )
-    .map(researches => ({...researches, slug: makeSlug(researches)
-    }))
-  }
+    displayResearches = researches
+      .filter(research => selectedResearch.includes(research.tree))
+      .map(researches => ({ ...researches, slug: makeSlug(researches) }));
+  };
 
-  const makeSlug = (research) => {
-    return research.research.toLowerCase().replace(' ', '-') + '-' + research.level
-  }
+  const makeSlug = research => {
+    return (
+      research.research.toLowerCase().replace(" ", "-") + "-" + research.level
+    );
+  };
 
-  const addResearch = (research) => {
-    console.log('hi')
-  }
+  const addResearch = () => {
+    const tempResearches = researches.filter(research =>
+      currentResearches.includes(research.id)
+    );
+  };
 </script>
 
 <style>
-label {
-  display: block;
-}
+  label {
+    display: block;
+  }
 </style>
 
 <div class="container">
@@ -73,13 +79,14 @@ label {
   </div>
   <div class="contents">
     {#each displayResearches as research}
-      <label for="{research.slug}">
+      <label for={research.slug}>
         <input
-          name="{research.slug}"
-          id="infantry"
+          name={research.slug}
+          id={research.slug}
           type="checkbox"
+          bind:group={currentResearches}
           on:change={addResearch}
-          value="{research.id}" />
+          value={research.id} />
         {research.research} Level {research.level}
       </label>
     {/each}
