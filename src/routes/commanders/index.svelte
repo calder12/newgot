@@ -128,7 +128,7 @@
     color: #fff;
     padding: 0.125rem 0.5rem;
     border-radius: 0.25rem;
-    background-color: rgb(255,62,0);
+    background-color: #DB3700;
     font-weight: 600;
   }
 </style>
