@@ -125,7 +125,11 @@
   .toggle {
     cursor: pointer;
     font-size: 1rem;
-    color: rgb(255,62,0);
+    color: #fff;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: rgb(255,62,0);
+    font-weight: 600;
   }
 </style>
 
