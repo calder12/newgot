@@ -53,6 +53,7 @@
 		<li><a class='{segment === undefined ? "selected" : ""}' href='.'>home</a></li>
 		<li><a class='{segment === "about" ? "selected" : ""}' href='about'>about</a></li>
 		<li><a class='{segment === "research" ? "selected" : ""}' href='research'>research</a></li>
+		<li><a class='{segment === "research" ? "selected" : ""}' href='research/calculator'>research calculator</a></li>
 		<li><a class='{segment === "commanders" ? "selected" : ""}' href='commanders'>commanders</a></li>
 	</ul>
 </nav>
