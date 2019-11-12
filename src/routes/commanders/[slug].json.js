@@ -1,13 +1,11 @@
-import posts from './_posts.js';
+import commanders from './_commanders.js';
 
 const lookup = new Map();
-posts.forEach(post => {
-	lookup.set(post.slug, JSON.stringify(post));
+commanders.forEach(commander => {
+	lookup.set(commander.slug, JSON.stringify(commander));
 });
 
 export function get(req, res, next) {
-	// the `slug` parameter is available because
-	// this file is called [slug].json.js
 	const { slug } = req.params;
 
 	if (lookup.has(slug)) {

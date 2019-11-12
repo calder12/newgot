@@ -1,13 +1,13 @@
-import posts from './_posts.js';
+import commanders from './_commanders.js';
 
-const contents = JSON.stringify(posts.map(post => {
+const contents = JSON.stringify(commanders.map(commander => {
 	return {
-		title: post.title,
-		slug: post.slug,
-		class: post.class,
-		type: post.type,
-		acquisition: post.acquisition,
-		militaryBonus: post.militaryBonus
+		title: commander.title,
+		slug: commander.slug,
+		class: commander.class,
+		type: commander.type,
+		acquisition: commander.acquisition,
+		militaryBonus: commander.militaryBonus
 	};
 }));
 

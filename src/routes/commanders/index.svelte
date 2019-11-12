@@ -2,8 +2,8 @@
   export function preload({ params, query }) {
     return this.fetch(`commanders.json`)
       .then(r => r.json())
-      .then(posts => {
-        return { posts };
+      .then(commanders => {
+        return { commanders };
       });
   }
 </script>
@@ -11,8 +11,8 @@
 <script>
   import { slide } from 'svelte/transition';
 
-  export let posts;
-  let displayPosts = posts;
+  export let commanders;
+  let displaycommanders = commanders;
   let showFilters = false
   let troopClasses = ["Infantry", "Cavalry", "Bowmen", "Spearmen"];
   let troopType = [
@@ -73,11 +73,11 @@
   };
 
   function filterCommanders() {
-    displayPosts = posts.filter(post => troopClasses.includes(post.class));
-    displayPosts = displayPosts.filter(post =>
-      acquisition.includes(post.acquisition)
+    displaycommanders = commanders.filter(commander => troopClasses.includes(commander.class));
+    displaycommanders = displaycommanders.filter(commander =>
+      acquisition.includes(commander.acquisition)
     );
-    displayPosts = displayPosts.filter(post => troopType.includes(post.type));
+    displaycommanders = displaycommanders.filter(commander => troopType.includes(commander.type));
   }
 </script>
 
@@ -311,10 +311,10 @@
 </div>
 {/if}
 <div class="commanders">
-  {#each displayPosts as post}
-    <a rel="prefetch" href="commanders/{post.slug}" class="commander-link">
+  {#each displaycommanders as commander}
+    <a rel="prefetch" href="commanders/{commander.slug}" class="commander-link">
       <div class="commander">
-        <h3>{post.title}</h3>
+        <h3>{commander.title}</h3>
       </div>
     </a>
   {/each}

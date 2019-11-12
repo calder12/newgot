@@ -6,7 +6,7 @@
 		const data = await res.json();
 
 		if (res.status === 200) {
-			return { post: data };
+			return { commander: data };
 		} else {
 			this.error(res.status, data.message);
 		}
@@ -14,8 +14,8 @@
 </script>
 
 <script>
-	export let post;
-	console.log(post)
+	export let commander;
+	console.log(commander)
 </script>
 
 <style>
@@ -23,7 +23,7 @@
 		By default, CSS is locally scoped to the component,
 		and any unused styles are dead-code-eliminated.
 		In this page, Svelte can't know which elements are
-		going to appear inside the {{{post.html}}} block,
+		going to appear inside the {{{commander.html}}} block,
 		so we have to use the :global(...) modifier to target
 		all elements inside .content
 	*/
@@ -55,24 +55,24 @@
 </style>
 
 <svelte:head>
-	<title>{post.title}</title>
+	<title>{commander.title}</title>
 </svelte:head>
 
-<h1>{post.title}</h1>
+<h1>{commander.title}</h1>
 <div>
 <p>
 Economic Bonus: 
-{#each post.economicBonus as bonus}
+{#each commander.economicBonus as bonus}
 {bonus}
 {/each}
 </p>
 <p>
 Military Bonus: 
-{#each post.militaryBonus as bonus}
+{#each commander.militaryBonus as bonus}
 {bonus} 
 {/each}
 </p>
 </div>
 <div class='content'>
-	{@html post.html}
+	{@html commander.html}
 </div>

@@ -78,6 +78,12 @@
     </div>
   </div>
   <div class="contents">
+  <div style="border: 1px solid #ccc; padding: 1rem; margin:2rem 0">
+  <h3>ids in the currentResearches array which binds to the checkboxes below</h3>
+  {#each currentResearches as current}
+  {current}, 
+  {/each}
+  </div>
     {#each displayResearches as research}
       <label for={research.slug}>
         <input
@@ -87,7 +93,7 @@
           bind:group={currentResearches}
           on:change={addResearch}
           value={research.id} />
-        {research.research} Level {research.level}
+        {research.research} Level {research.level} - Id: {research.id}
       </label>
     {/each}
   </div>

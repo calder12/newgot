@@ -1,4 +1,4 @@
-const posts = [
+const commanders = [
 		{
 			title: "Andrea",
 			slug: "andrea",
@@ -381,8 +381,8 @@ const posts = [
 		}
 ];
 
-posts.forEach(post => {
-	post.html = post.html.replace(/^\t{3}/gm, '');
+commanders.forEach(commander => {
+	commander.html = commander.html.replace(/^\t{3}/gm, '');
 });
 
-export default posts;
+export default commanders;
