@@ -12,9 +12,12 @@
   export let researches;
   let researchBonus = 0;
   let researchTime = 0;
-  let totalReturn = '0d 0h 0m 0s'
-  let totalBonusReturn = '0d 0h 0m 0s'
-  let researchHelps;
+  let bonusHelpTime = 0;
+  let helpTime = 0;
+  let researchHelps = 6;
+  let totalReturn = "0d 0h 0m 0s";
+  let totalBonusReturn = "0d 0h 0m 0s";
+  let totalBonusHelpsReturn = "0d 0h 0m 0s";
   let selectedResearch;
   let displayResearches = [];
   let currentResearches = [];
@@ -45,20 +48,41 @@
       currentResearches = [...currentResearches, id];
     } else {
       currentResearches = currentResearches.filter(research => {
-        return research !== id
-      })
+        return research !== id;
+      });
     }
 
     tempResearches = researches.filter(research =>
       currentResearches.includes(research.id)
     );
-    researchTime = tempResearches.reduce((accumulator, research, index) => {
-      return accumulator + parseInt(research.seconds)
-    }, 0)
-    calculateTotalTime(researchTime)
+    calculateTotalTime();
   };
 
-    const calculateTime = (seconds) => {
+  const calculateTotalTime = () => {
+    researchTime = tempResearches.reduce((accumulator, research, index) => {
+      return accumulator + parseInt(research.seconds);
+    }, 0);
+    bonusHelpTime = tempResearches.reduce((accumulator, research, index) => {
+      helpTime =
+        (research.seconds < 3600 ? 60 : research.seconds * 0.01) *
+        researchHelps;
+      if (research.seconds - helpTime < 0) {
+        return accumulator;
+      }
+      return accumulator + parseInt(research.seconds - helpTime);
+    }, 0);
+    console.log(bonusHelpTime);
+    totalReturn = calculateTime(researchTime);
+    totalBonusReturn = calculateTime(
+      Math.round((researchTime * 100) / (100 + parseFloat(researchBonus)))
+    );
+    totalBonusHelpsReturn = calculateTime(
+      Math.round((bonusHelpTime * 100) / (100 + parseFloat(researchBonus)))
+    );
+  };
+
+  const calculateTime = seconds => {
+    console.log(seconds);
     const numdays = Math.floor(seconds / 86400);
     const numhours = Math.floor((seconds % 86400) / 3600);
     const numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
@@ -73,12 +97,7 @@
       numseconds +
       "s";
     return total;
-  }
-
-  const calculateTotalTime = (researchTime => {
-    totalReturn = calculateTime(researchTime);
-    totalBonusReturn = calculateTime(Math.round((researchTime * 100) / (100 + parseFloat(researchBonus))))
-  })
+  };
 </script>
 
 <style>
@@ -98,7 +117,7 @@
       <input
         type="number"
         bind:value={researchBonus}
-        on:change={calculateTotalTime(researchTime)}
+        on:change={calculateTotalTime}
         placeholder="Enter research bonus"
         id="research-bonus" />
     </div>
@@ -107,6 +126,7 @@
       <input
         type="number"
         bind:value={researchHelps}
+        on:change={calculateTotalTime}
         placeholder="Enter number of helps"
         id="research-helps" />
     </div>
@@ -126,8 +146,18 @@
       </select>
     </div>
     <div class="times">
-    <p>Base Time: <span>{totalReturn}</span></p>
-    <p>Your Time: <span>{totalBonusReturn}</span></p>
+      <p>
+        Base Time:
+        <span>{totalReturn}</span>
+      </p>
+      <p>
+        Your Time:
+        <span>{totalBonusReturn}</span>
+      </p>
+      <p>
+        Your Time With Helps:
+        <span>{totalBonusHelpsReturn}</span>
+      </p>
     </div>
   </div>
   <div class="contents">
