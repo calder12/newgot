@@ -15,18 +15,22 @@
   let selectedResearch;
   let displayResearches = [];
   let currentResearches = [];
-  let tempResearches = []
+  let tempResearches = [];
   let researchTime;
 
   const getResearches = () => {
     displayResearches = researches
       .filter(research => selectedResearch.includes(research.tree))
-      .map(researches => ({ ...researches, slug: makeSlug(researches), checked: checkChecked(researches)}));
+      .map(researches => ({
+        ...researches,
+        slug: makeSlug(researches),
+        checked: checkChecked(researches)
+      }));
   };
 
   const checkChecked = research => {
-    return currentResearches.includes(research.id) 
-  }
+    return currentResearches.includes(research.id);
+  };
 
   const makeSlug = research => {
     return (
@@ -34,13 +38,19 @@
     );
   };
 
-  const addResearch = (id) => {
-    currentResearches = [...currentResearches, id]
-    let tempArray = researches.filter(research =>
+  const addResearch = (id, checked) => {
+    if (checked) {
+      currentResearches = [...currentResearches, id];
+    } else {
+      currentResearches = currentResearches.filter(research => {
+        return research !== id
+      })
+    }
+
+    tempResearches = researches.filter(research =>
       currentResearches.includes(research.id)
     );
-    tempResearches = [...tempArray, ...tempResearches]
-    console.log(currentResearches)
+    console.log(tempResearches);
   };
 </script>
 
@@ -90,16 +100,16 @@
   </div>
   <div class="contents">
     {#each displayResearches as research, index}
-    {#if (research.level - 1) % 10 === 0}
-    <hr>
-    {/if}
+      {#if (research.level - 1) % 10 === 0}
+        <hr />
+      {/if}
       <label for={research.slug}>
         <input
           name={research.slug}
           id={research.slug}
           type="checkbox"
           bind:checked={research.checked}
-          on:change={() => addResearch(research.id)}
+          on:change={() => addResearch(research.id, research.checked)}
           value={research.id} />
         {research.research} Level {research.level}
       </label>
