@@ -15,13 +15,18 @@
   let selectedResearch;
   let displayResearches = [];
   let currentResearches = [];
+  let tempResearches = []
   let researchTime;
 
   const getResearches = () => {
     displayResearches = researches
       .filter(research => selectedResearch.includes(research.tree))
-      .map(researches => ({ ...researches, slug: makeSlug(researches) }));
+      .map(researches => ({ ...researches, slug: makeSlug(researches), checked: checkChecked(researches)}));
   };
+
+  const checkChecked = research => {
+    return currentResearches.includes(research.id) 
+  }
 
   const makeSlug = research => {
     return (
@@ -29,16 +34,22 @@
     );
   };
 
-  const addResearch = () => {
-    const tempResearches = researches.filter(research =>
+  const addResearch = (id) => {
+    currentResearches = [...currentResearches, id]
+    let tempArray = researches.filter(research =>
       currentResearches.includes(research.id)
     );
+    tempResearches = [...tempArray, ...tempResearches]
+    console.log(currentResearches)
   };
 </script>
 
 <style>
   label {
     display: block;
+  }
+  .contents {
+    line-height: 1.8;
   }
 </style>
 
@@ -78,22 +89,19 @@
     </div>
   </div>
   <div class="contents">
-  <div style="border: 1px solid #ccc; padding: 1rem; margin:2rem 0">
-  <h3>ids in the currentResearches array which binds to the checkboxes below</h3>
-  {#each currentResearches as current}
-  {current}, 
-  {/each}
-  </div>
-    {#each displayResearches as research}
+    {#each displayResearches as research, index}
+    {#if (research.level - 1) % 10 === 0}
+    <hr>
+    {/if}
       <label for={research.slug}>
         <input
           name={research.slug}
           id={research.slug}
           type="checkbox"
-          bind:group={currentResearches}
-          on:change={addResearch}
+          bind:checked={research.checked}
+          on:change={() => addResearch(research.id)}
           value={research.id} />
-        {research.research} Level {research.level} - Id: {research.id}
+        {research.research} Level {research.level}
       </label>
     {/each}
   </div>
