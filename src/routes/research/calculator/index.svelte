@@ -10,13 +10,15 @@
 
 <script>
   export let researches;
-  let researchBonus;
+  let researchBonus = 0;
+  let researchTime = 0;
+  let totalReturn = '0d 0h 0m 0s'
+  let totalBonusReturn = '0d 0h 0m 0s'
   let researchHelps;
   let selectedResearch;
   let displayResearches = [];
   let currentResearches = [];
   let tempResearches = [];
-  let researchTime;
 
   const getResearches = () => {
     displayResearches = researches
@@ -50,8 +52,33 @@
     tempResearches = researches.filter(research =>
       currentResearches.includes(research.id)
     );
-    console.log(tempResearches);
+    researchTime = tempResearches.reduce((accumulator, research, index) => {
+      return accumulator + parseInt(research.seconds)
+    }, 0)
+    calculateTotalTime(researchTime)
   };
+
+    const calculateTime = (seconds) => {
+    const numdays = Math.floor(seconds / 86400);
+    const numhours = Math.floor((seconds % 86400) / 3600);
+    const numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+    const numseconds = ((seconds % 86400) % 3600) % 60;
+    const total =
+      numdays +
+      "d : " +
+      numhours +
+      "h : " +
+      numminutes +
+      "m : " +
+      numseconds +
+      "s";
+    return total;
+  }
+
+  const calculateTotalTime = (researchTime => {
+    totalReturn = calculateTime(researchTime);
+    totalBonusReturn = calculateTime(Math.round((researchTime * 100) / (100 + parseFloat(researchBonus))))
+  })
 </script>
 
 <style>
@@ -71,6 +98,7 @@
       <input
         type="number"
         bind:value={researchBonus}
+        on:change={calculateTotalTime(researchTime)}
         placeholder="Enter research bonus"
         id="research-bonus" />
     </div>
@@ -96,6 +124,10 @@
         <option value="Formations">Formations</option>
         <option value="Commandership">Commandership</option>
       </select>
+    </div>
+    <div class="times">
+    <p>Base Time: <span>{totalReturn}</span></p>
+    <p>Your Time: <span>{totalBonusReturn}</span></p>
     </div>
   </div>
   <div class="contents">
