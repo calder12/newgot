@@ -14,6 +14,7 @@
   let researchTime = 0;
   let bonusHelpTime = 0;
   let helpTime = 0;
+  let freeSpeedup = 0;
   let researchHelps = 6;
   let totalReturn = "0d 0h 0m 0s";
   let totalBonusReturn = "0d 0h 0m 0s";
@@ -71,7 +72,6 @@
       }
       return accumulator + parseInt(research.seconds - helpTime);
     }, 0);
-    console.log(bonusHelpTime);
     totalReturn = calculateTime(researchTime);
     totalBonusReturn = calculateTime(
       Math.round((researchTime * 100) / (100 + parseFloat(researchBonus)))
@@ -82,7 +82,6 @@
   };
 
   const calculateTime = seconds => {
-    console.log(seconds);
     const numdays = Math.floor(seconds / 86400);
     const numhours = Math.floor((seconds % 86400) / 3600);
     const numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
@@ -107,14 +106,43 @@
   .contents {
     line-height: 1.8;
   }
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1.5rem;
+  }
+  @media(max-width: 990px) {
+    .controls {
+      grid-template-columns: 1fr;
+    }
+  }
+  .form-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 0.5rem;
+  }
+  table {
+    width: 100%;
+  }
+  td {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+  }
+  .text-input, select {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
 </style>
 
 <div class="container">
   <h1>Research Calculator</h1>
   <div class="controls">
+  <div>
     <div class="form-group">
       <label for="research-bonus">Research Bonus</label>
       <input
+        class="text-input"
         type="number"
         bind:value={researchBonus}
         on:change={calculateTotalTime}
@@ -124,6 +152,7 @@
     <div class="form-group">
       <label for="research-helps">Helps</label>
       <input
+        class="text-input"
         type="number"
         bind:value={researchHelps}
         on:change={calculateTotalTime}
@@ -131,6 +160,17 @@
         id="research-helps" />
     </div>
     <div class="form-group">
+      <label for="research-helps">Free Speedup Time (in minutes)</label>
+      <input
+        class="text-input"
+        type="number"
+        bind:value={freeSpeedup}
+        on:change={calculateTotalTime}
+        placeholder="Enter number of helps"
+        id="research-helps" />
+    </div>
+    <div class="form-group">
+    <label for="tree">Select Research Tree</label>
       <select id="tree" bind:value={selectedResearch} on:change={getResearches}>
         <option>Select Research Tree</option>
         <option value="Production">Production</option>
@@ -145,19 +185,15 @@
         <option value="Commandership">Commandership</option>
       </select>
     </div>
+    </div>
     <div class="times">
-      <p>
-        Base Time:
-        <span>{totalReturn}</span>
-      </p>
-      <p>
-        Your Time:
-        <span>{totalBonusReturn}</span>
-      </p>
-      <p>
-        Your Time With Helps:
-        <span>{totalBonusHelpsReturn}</span>
-      </p>
+    <table>
+    <tbody>
+      <tr><td>Base Time:</td><td>{totalReturn}</td></tr>
+      <tr><td>Your Time:</td><td>{totalBonusReturn}</td></tr>
+      <tr><td>Your Time With Helps:</td><td>{totalBonusHelpsReturn}</td></tr>
+    </tbody>
+    </table>
     </div>
   </div>
   <div class="contents">
