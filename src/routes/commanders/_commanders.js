@@ -210,8 +210,8 @@ const commanders = [
 			html: ``
 		},
 		{
-			title: "Merrell Peake",
-			slug: "merrell-peake",
+			title: "Merrel Peake",
+			slug: "merrel-peake",
 			acquisition: "free",
 			type: "Single Target Attack",
 			class: "Cavalry",

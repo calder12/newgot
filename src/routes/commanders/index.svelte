@@ -131,6 +131,10 @@
     background-color: #DB3700;
     font-weight: 600;
   }
+
+  .commander-image {
+    object-fit: cover;
+  }
 </style>
 
 <svelte:head>
@@ -314,6 +318,7 @@
   {#each displaycommanders as commander}
     <a rel="prefetch" href="commanders/{commander.slug}" class="commander-link">
       <div class="commander">
+        <img class="commander-image" src="/commanders/{commander.slug}.png" alt="{commander.title} Image"/>
         <h3>{commander.title}</h3>
       </div>
     </a>
